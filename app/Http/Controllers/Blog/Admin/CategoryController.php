@@ -7,16 +7,28 @@ use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 // use Illuminate\Http\Request;
 use App\Models\BlogCategory;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\Support\Str;
 
 class CategoryController extends BaseController
 {
+     /**
+         * @var BlogCategoryRepository
+         */
+        private $blogCategoryRepository;
+
+        public function __construct()
+        {
+            parent::__construct();
+            $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+        }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(5);
+        // $paginator = BlogCategory::paginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
         return view('blog.admin.categories.index', compact('paginator'));
     }
 
@@ -26,7 +38,7 @@ class CategoryController extends BaseController
     public function create()
     {
          $item = new BlogCategory();
-                $categoryList = BlogCategory::all();
+                $categoryList = $this->blogCategoryRepository->getForComboBox();
 
                 return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -65,20 +77,23 @@ class CategoryController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $item = BlogCategory::findOrFail($id);
-            $categoryList = BlogCategory::all();
+     public function edit($id)
+       {
+           $item = $this->blogCategoryRepository->getEdit($id);
+           if (empty($item)) {                         //помилка, якщо репозиторій не знайде наш ід
+               abort(404);
+           }
+           $categoryList = $this->blogCategoryRepository->getForComboBox($item->parent_id);
 
-            return view('blog.admin.categories.edit', compact('item', 'categoryList'));
-    }
+           return view('blog.admin.categories.edit', compact('item', 'categoryList'));
+       }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $item = BlogCategory::find($id);
+        $item = $this->blogCategoryRepository->getEdit($id);
 
             if (empty($item)) {
                 return back()
