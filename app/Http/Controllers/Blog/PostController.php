@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Models\BlogPost;
+use App\Models\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class PostController extends BaseController

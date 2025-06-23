@@ -9,7 +9,7 @@ use App\Repositories\BlogCategoryRepository;
 use App\Http\Requests\BlogPostUpdateRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\BlogPost;
+use App\Models\Models\BlogPost;
 use App\Http\Requests\BlogPostCreateRequest;
 
 class PostController extends BaseController

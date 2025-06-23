@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\BlogPost as Model;
+use App\Models\Models\BlogPost as Model;
 use Illuminate\Database\Eloquent\Collection;
 
 /**

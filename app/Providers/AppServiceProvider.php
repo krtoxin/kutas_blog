@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\BlogPost;
-use App\Models\BlogCategory;
+use App\Models\Models\BlogPost;
+use App\Models\Models\BlogCategory;
 use App\Observers\BlogPostObserver;
 use App\Observers\BlogCategoryObserver;
 

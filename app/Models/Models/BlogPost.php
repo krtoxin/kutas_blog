@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Models;
 
+use App\Models\Models\BlogCategory;
+use App\Models\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;

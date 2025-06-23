@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\BlogPost;
+use App\Models\Models\BlogPost;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessVideoJob;
 use App\Jobs\GenerateCatalog\GenerateCatalogMainJob;
-use App\Models\BlogPost;
+use App\Models\Models\BlogPost;
 use Carbon\Carbon;
 
 class DiggingDeeperController extends Controller
